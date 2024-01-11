@@ -34,5 +34,46 @@
     background-color: #f6fffe;
     border-radius: 40px;
     cursor: pointer;
-
+}
+.weather-image{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.weather-location{
+    display: flex;
+    justify-content: center;
+    color:#f6fffe;
+    font-size: 50px;
+    font-weight: 300;
+}
+.weather-temp{
+    display: flex;
+    justify-content: center;
+    color:#f6fffe;
+    font-size: 90px;
+    font-weight: 500;
+}
+.data-container{
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    color:#f6fffe
+}
+.elem{
+    margin: auto;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+}
+.data{
+    font-size: 20px;
+    font-weight: 300;
+}
+.displayText{
+    font-size: 20px;
+    font-weight: 300;
+}
+.icon{
+    margin-top: 40px;
 }
