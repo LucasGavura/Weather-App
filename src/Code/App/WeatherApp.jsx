@@ -18,8 +18,7 @@ import wind_icon from '../Images/Wind.png';
 const Weather = () => {
 
     let api = "b9b195fcaa328638617ed17e0d4cb234";
-    document.body.style.background = 'radial-gradient(circle at 10% 10%, rgb(203, 195, 227) 0%, rgb(207, 159, 255) 90%)';
-
+    
     const [weatherIcon,setWeatherIcon] = useState(snow_icon);
 
     const search = async () => {
@@ -110,6 +109,11 @@ const Weather = () => {
     }
 
     return (
+        /*<div>
+            Style = {{
+            backgroundImage:'url("https://miro.medium.com/v2/resize:fit:1400/1*q_Hg_9AUqkZFPW8hN65QzQ.gif")',
+        }}
+        </div>*/
         <div className='container'>
             <div className="top-bar">
                 <input type="text" className="locationInput" placeholder='Enter location here'/>
