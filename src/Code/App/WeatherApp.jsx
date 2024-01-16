@@ -3,12 +3,14 @@ import './WeatherApp.css';
 
 //importing the images
 import drizzle_icon from '../Images/Drizzle.png';
+import haze_icon from '../Images/Haze.png';
 import humidity_icon from '../Images/Humidity.png';
+import mostlyCloudy_icon from '../Images/MostlyCloudy.png';
+import overcast_icon from '../Images/Overcast.png';
 import partlyCloudy_icon from '../Images/PartlyCloudy.png';
 import rain_icon from '../Images/Rain.png';
 import search_icon from '../Images/Search.png';
 import snow_icon from '../Images/Snow.png';
-import snowstorm_icon from '../Images/SnowStorm.png';
 import storm_icon from '../Images/Storm.png';
 import sunny_icon from '../Images/Sunny.png';
 import wind_icon from '../Images/Wind.png';
@@ -16,7 +18,7 @@ import wind_icon from '../Images/Wind.png';
 const Weather = () => {
 
     let api = "b9b195fcaa328638617ed17e0d4cb234";
-    //document.body.style.background = 'radial-gradient(circle at 10% 10%, rgb(111, 70, 6) 0%, rgb(50, 50, 50) 50.2%)';
+    document.body.style.background = 'radial-gradient(circle at 10% 10%, rgb(203, 195, 227) 0%, rgb(207, 159, 255) 90%)';
 
     const [weatherIcon,setWeatherIcon] = useState(snow_icon);
 
@@ -26,29 +28,83 @@ const Weather = () => {
             return 0;
         }
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${query[0].value}&units=Metric&appid=${api}`;
-        let response = await fetch(url);
-        let data = await response.json();
+        
+        try {
+            let response = await fetch(url);
+            let data = await response.json();
+        
 
-        const humidity =document.getElementsByClassName("humidity-percent");
-        const wind = document.getElementsByClassName("wind-speed");
-        const temperature = document.getElementsByClassName("weather-temp");
-        const location = document.getElementsByClassName("weather-location");
+            const humidity =document.getElementsByClassName("humidity-percent");
+            const wind = document.getElementsByClassName("wind-speed");
+            const temperature = document.getElementsByClassName("weather-temp");
+            const location = document.getElementsByClassName("weather-location");
 
-        humidity[0].innerHTML = data.main.humidity+"%";
-        wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
-        temperature[0].innerHTML = Math.floor(data.main.temp)+"°C";
-        location[0].innerHTML = data.name+", "+data.sys.country;
+            humidity[0].innerHTML = data.main.humidity+"%";
+            wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
+            temperature[0].innerHTML = Math.floor(data.main.temp)+"°C";
+            location[0].innerHTML = data.name+", "+data.sys.country;
 
-        switch(data.weather[0].icon) {
-            case "01d":
-                setWeatherIcon(sunny_icon);
-                break;
-            case "01n":
-                setWeatherIcon(sunny_icon);
-                break;
-            default:
-                setWeatherIcon(snow_icon);
-                break;
+            switch(data.weather[0].icon) {
+                case "01d":
+                    setWeatherIcon(sunny_icon); //sunny
+                    break;
+                case "01n":
+                    setWeatherIcon(sunny_icon); //sunny
+                    break;
+                case "02d":
+                    setWeatherIcon(partlyCloudy_icon); //partly cloudy
+                    break;
+                case "02n":
+                    setWeatherIcon(partlyCloudy_icon); //partly cloudy
+                    break;
+                case "03d":
+                    setWeatherIcon(mostlyCloudy_icon); //mostly cloudy
+                    break;
+                case "03n":
+                    setWeatherIcon(mostlyCloudy_icon); //mostly cloudy
+                    break;
+                case "04d":
+                    setWeatherIcon(overcast_icon); //overcast clouds
+                    break;
+                case "04n":
+                    setWeatherIcon(overcast_icon); //overcast clouds
+                    break;
+                case "09d":
+                    setWeatherIcon(drizzle_icon); //drizzle
+                    break;
+                case "09n":
+                    setWeatherIcon(drizzle_icon); //drizzle
+                    break;
+                case "10d":
+                    setWeatherIcon(rain_icon); //rain
+                    break;
+                case "10n":
+                    setWeatherIcon(rain_icon); //rain
+                    break;
+                case "11d":
+                    setWeatherIcon(storm_icon); //storm
+                    break;
+                case "11n":
+                    setWeatherIcon(storm_icon); //storm
+                    break;
+                case "13d":
+                    setWeatherIcon(snow_icon); //snow
+                    break;
+                case "13n":
+                    setWeatherIcon(snow_icon); //snow
+                    break;
+                case "50d":
+                    setWeatherIcon(haze_icon); //mist / nado / haze
+                    break;
+                case "50n":
+                    setWeatherIcon(haze_icon);
+                    break;
+                default:
+                    setWeatherIcon(snow_icon);
+                    break;
+            }
+        } catch (error) {
+            console.log(error);
         }
 
     }
