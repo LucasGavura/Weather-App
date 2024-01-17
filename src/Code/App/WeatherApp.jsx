@@ -25,7 +25,7 @@ import storm_gif from '../Images/Storm.gif';
 import snow_gif from '../Images/Snow.gif';
 import haze_gif from '../Images/Haze.gif';
 
-const Weather = () => {
+const Weather = ( {setWeatherBackground} ) => {
 
     let api = "b9b195fcaa328638617ed17e0d4cb234"; //please put your unique api key here
     
@@ -36,13 +36,13 @@ const Weather = () => {
         if(query[0].value==="") {
             return 0;
         }
+
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${query[0].value}&units=Metric&appid=${api}`;
         
         try {
             let response = await fetch(url);
             let data = await response.json();
         
-
             const humidity =document.getElementsByClassName("humidity-percent");
             const wind = document.getElementsByClassName("wind-speed");
             const temperature = document.getElementsByClassName("weather-temp");
@@ -56,74 +56,87 @@ const Weather = () => {
             switch(data.weather[0].icon) {
                 case "01d":
                     setWeatherIcon(sunny_icon); //sunny
+                    setWeatherBackground(sunny_gif)
                     break;
                 case "01n":
                     setWeatherIcon(sunny_icon); //sunny night
+                    setWeatherBackground(night_gif)
                     break;
                 case "02d":
                     setWeatherIcon(partlyCloudy_icon); //partly cloudy day
+                    setWeatherBackground(cloudy_gif)
                     break;
                 case "02n":
                     setWeatherIcon(partlyCloudy_icon); //partly cloudy night
+                    setWeatherBackground(cloudyNight_gif)
                     break;
                 case "03d":
                     setWeatherIcon(mostlyCloudy_icon); //mostly cloudy
+                    setWeatherBackground(cloudy_gif)
                     break;
                 case "03n":
                     setWeatherIcon(mostlyCloudy_icon); //mostly cloudy
+                    setWeatherBackground(cloudyNight_gif)
                     break;
                 case "04d":
                     setWeatherIcon(overcast_icon); //overcast clouds
+                    setWeatherBackground(cloudy_gif)
                     break;
                 case "04n":
                     setWeatherIcon(overcast_icon); //overcast clouds
+                    setWeatherBackground(cloudyNight_gif)
                     break;
                 case "09d":
                     setWeatherIcon(drizzle_icon); //drizzle
+                    setWeatherBackground(drizzle_gif)
                     break;
                 case "09n":
                     setWeatherIcon(drizzle_icon); //drizzle
+                    setWeatherBackground(drizzle_gif)
                     break;
                 case "10d":
                     setWeatherIcon(rain_icon); //rain
+                    setWeatherBackground(rain_gif)
                     break;
                 case "10n":
                     setWeatherIcon(rain_icon); //rain
+                    setWeatherBackground(rain_gif)
                     break;
                 case "11d":
                     setWeatherIcon(storm_icon); //storm
+                    setWeatherBackground(storm_gif)
                     break;
                 case "11n":
                     setWeatherIcon(storm_icon); //storm
+                    setWeatherBackground(storm_gif)
                     break;
                 case "13d":
                     setWeatherIcon(snow_icon); //snow
+                    setWeatherBackground(snow_gif)
                     break;
                 case "13n":
                     setWeatherIcon(snow_icon); //snow
+                    setWeatherBackground(snow_gif)
                     break;
                 case "50d":
                     setWeatherIcon(haze_icon); //mist / nado / haze
+                    setWeatherBackground(haze_gif)
                     break;
                 case "50n":
                     setWeatherIcon(haze_icon);
+                    setWeatherBackground(haze_gif)
                     break;
                 default:
                     setWeatherIcon(snow_icon);
                     break;
             }
         } catch (error) {
-            console.log(error);
+            console.log("could not find the city you are searching for",error);
         }
 
     }
 
     return (
-        /*<div>
-            Style = {{
-            backgroundImage:'url("https://miro.medium.com/v2/resize:fit:1400/1*q_Hg_9AUqkZFPW8hN65QzQ.gif")',
-        }}
-        </div>*/
         <div className='container'>
             <div className="top-bar">
                 <input type="text" className="locationInput" placeholder='Enter location here'/>
