@@ -15,9 +15,19 @@ import storm_icon from '../Images/Storm.png';
 import sunny_icon from '../Images/Sunny.png';
 import wind_icon from '../Images/Wind.png';
 
+import sunny_gif from '../Images/Sunny.gif';
+import night_gif from '../Images/Night.gif';
+import cloudy_gif from '../Images/PartlyCloudy.gif';
+import cloudyNight_gif from '../Images/PartlyCloudyNight.gif';
+import drizzle_gif from '../Images/Drizzle.gif';
+import rain_gif from '../Images/Rain.gif';
+import storm_gif from '../Images/Storm.gif';
+import snow_gif from '../Images/Snow.gif';
+import haze_gif from '../Images/Haze.gif';
+
 const Weather = () => {
 
-    let api = "b9b195fcaa328638617ed17e0d4cb234";
+    let api = "b9b195fcaa328638617ed17e0d4cb234"; //please put your unique api key here
     
     const [weatherIcon,setWeatherIcon] = useState(snow_icon);
 
@@ -48,13 +58,13 @@ const Weather = () => {
                     setWeatherIcon(sunny_icon); //sunny
                     break;
                 case "01n":
-                    setWeatherIcon(sunny_icon); //sunny
+                    setWeatherIcon(sunny_icon); //sunny night
                     break;
                 case "02d":
-                    setWeatherIcon(partlyCloudy_icon); //partly cloudy
+                    setWeatherIcon(partlyCloudy_icon); //partly cloudy day
                     break;
                 case "02n":
-                    setWeatherIcon(partlyCloudy_icon); //partly cloudy
+                    setWeatherIcon(partlyCloudy_icon); //partly cloudy night
                     break;
                 case "03d":
                     setWeatherIcon(mostlyCloudy_icon); //mostly cloudy
